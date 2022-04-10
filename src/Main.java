@@ -19,7 +19,7 @@ public class Main {
         // Criando estrutura da matriz no Simplex
         Simplex simplex = new Simplex(4, 6);
 
-        simplex.fillTable(standardized);
+        simplex.preencheTableau(standardized);
 
         // Imprimindo matriz original
         System.out.println("---Matriz Inicial---");
@@ -27,12 +27,12 @@ public class Main {
 
         // Verifica se a solução é ilimitada
         while (!quit) {
-            Simplex.ERROR err = simplex.compute();
+            Simplex.ERROR err = simplex.calcula();
 
-            if (err == Simplex.ERROR.IS_OPTIMAL) {
+            if (err == Simplex.ERROR.OTIMO) {
                 simplex.print();
                 quit = true;
-            } else if (err == Simplex.ERROR.UNBOUNDED) {
+            } else if (err == Simplex.ERROR.ILIMITADO) {
                 System.out.println("---A solução é ilimitada---");
                 quit = true;
             }
