@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        boolean quit = false;
+        boolean sair = false;
 
         // Exemplo do problema:
         // max        z = 2x1 + 3x2
@@ -26,15 +26,15 @@ public class Main {
         simplex.print();
 
         // Verifica se a solução é ilimitada
-        while (!quit) {
+        while (!sair) {
             Simplex.ERROR err = simplex.calcula();
 
             if (err == Simplex.ERROR.OTIMO) {
                 simplex.print();
-                quit = true;
+                sair = true;
             } else if (err == Simplex.ERROR.ILIMITADO) {
                 System.out.println("---A solução é ilimitada---");
-                quit = true;
+                sair = true;
             }
         }
     }
