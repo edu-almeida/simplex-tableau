@@ -1,41 +1,61 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        boolean sair = false;
+        boolean verificaIlimitada = false;
+        float[][] valoresTableauUser;
+        Scanner scanner = new Scanner(System.in);
+        short numeroLinha, numeroColuna;
+        System.out.println();
+        System.out.println("""
+                Este programa requer a função  MAX / Z na sua forma tableau,
+                com seus valores já convertidos e com as atribuições das variáveis auxiliares.
+                Isso também vale as restrições, que devem estar no seu formato tableau.
+                """);
 
-        // Exemplo do problema:
-        // max        z = 2x1 + 3x2
-        // sujeito a  x1 + x2 + x3 = 6
-        //            2x1 + x2 + x4 = 10
-        //            -x1 + x2 + x5 = 4
-        float[][] standardized = {
-                {1, 1, 1, 0, 0, 6},
-                {2, 1, 0, 1, 0, 10},
-                {-1, 1, 0, 0, 1, 4},
-                {-2, -3, 0, 0, 0, 0}
-        };
+        System.out.println("Número de linhas do seu tableau, incluindo a coluna B (valores) e sem a coluna Z: ");
+        numeroLinha = scanner.nextShort();
+        System.out.println("Número de colunas do seu tableau, incluindo a coluna B (valores) e sem a coluna Z: ");
+        numeroColuna = scanner.nextShort();
+        System.out.println();
+        valoresTableauUser = new float[numeroLinha][numeroColuna];
+
+        System.out.println("Insira os valores das restrições:");
+        for (int i = 0; i < numeroLinha; i++) {
+            if (i != numeroLinha - 1) {
+                System.out.println("\nRESTRIÇÃO " + (i + 1));
+            } else {
+                System.out.println("\nVALORES DA RESTRIÇÃO Z:");
+            }
+            for (int j = 0; j < numeroColuna; j++) {
+                System.out.println("Valor " + (j + 1) + " de " + numeroColuna + ":");
+                valoresTableauUser[i][j] = scanner.nextFloat();
+            }
+        }
 
         // Criando estrutura da matriz no Simplex
-        Simplex simplex = new Simplex(4, 6);
+        Simplex simplex = new Simplex(numeroLinha, numeroColuna);
 
-        simplex.preencheTableau(standardized);
+        simplex.fillTable(valoresTableauUser);
 
         // Imprimindo matriz original
         System.out.println("---Matriz Inicial---");
         simplex.print();
 
         // Verifica se a solução é ilimitada
-        while (!sair) {
-            Simplex.ERROR err = simplex.calcula();
+        while (!verificaIlimitada) {
+            Simplex.ERROR err = simplex.compute();
 
-            if (err == Simplex.ERROR.OTIMO) {
+            if (err == Simplex.ERROR.IS_OPTIMAL) {
                 simplex.print();
-                sair = true;
-            } else if (err == Simplex.ERROR.ILIMITADO) {
+                verificaIlimitada = true;
+            } else if (err == Simplex.ERROR.UNBOUNDED) {
                 System.out.println("---A solução é ilimitada---");
-                sair = true;
+                verificaIlimitada = true;
             }
         }
     }
 }
+
