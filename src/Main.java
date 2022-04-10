@@ -9,6 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         short numeroLinha, numeroColuna;
         System.out.println();
+
         System.out.println("""
                 Este programa requer a função  MAX / Z na sua forma tableau,
                 com seus valores já convertidos e com as atribuições das variáveis auxiliares.
@@ -38,7 +39,7 @@ public class Main {
         // Criando estrutura da matriz no Simplex
         Simplex simplex = new Simplex(numeroLinha, numeroColuna);
 
-        simplex.fillTable(valoresTableauUser);
+        simplex.preencheTableau(valoresTableauUser);
 
         // Imprimindo matriz original
         System.out.println("---Matriz Inicial---");
@@ -46,16 +47,15 @@ public class Main {
 
         // Verifica se a solução é ilimitada
         while (!verificaIlimitada) {
-            Simplex.ERROR err = simplex.compute();
+            Simplex.ERROR err = simplex.calcula();
 
-            if (err == Simplex.ERROR.IS_OPTIMAL) {
+            if (err == Simplex.ERROR.OTIMO) {
                 simplex.print();
                 verificaIlimitada = true;
-            } else if (err == Simplex.ERROR.UNBOUNDED) {
+            } else if (err == Simplex.ERROR.ILIMITADO) {
                 System.out.println("---A solução é ilimitada---");
                 verificaIlimitada = true;
             }
         }
     }
 }
-
