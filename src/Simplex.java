@@ -4,6 +4,7 @@ public class Simplex {
     private final float[][] tableau; // tabela simplex
     private boolean solucaoIlimitada = false;
 
+    // Esse método auxilia
     public static enum ERROR {
         NAO_OTIMO,
         OTIMO,
@@ -11,8 +12,8 @@ public class Simplex {
     };
 
     public Simplex(int numDeLinhas, int numDeColunas) {
-        linhas = numDeLinhas; // número de linha
-        colunas = numDeColunas; // número de coluna
+        linhas = numDeLinhas; // número de linhas
+        colunas = numDeColunas; // número de colunas
         tableau = new float[linhas][]; // cria um vetor em 2d
 
         // inicializando as referências para o vetor

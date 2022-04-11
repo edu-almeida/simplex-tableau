@@ -38,7 +38,6 @@ public class Main {
 
         // Criando estrutura da matriz no Simplex
         Simplex simplex = new Simplex(numeroLinha, numeroColuna);
-
         simplex.preencheTableau(valoresTableauUser);
 
         // Imprimindo matriz original
