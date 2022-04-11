@@ -18,7 +18,10 @@ Exemplo:
 
 Ao final ele retorna uma matriz com uma solução basica, como por exemplo:
 
-
+1,00    0,00    0,50    0,00    -0,50   1,00
+0,00    0,00    -1,50   1,00    0,50    3,00
+0,00    1,00    0,50    0,00    0,50    5,00
+0,00    0,00    2,50    0,00    0,50    17,00
 
 ### Dependencies
 
