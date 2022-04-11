@@ -16,7 +16,7 @@ Exemplo:
  r2  |  2 |  1 | 0 | 1 | 0 | 10
  r3  | -1 |  1 | 0 | 0 | 1 | 4
 
-Ao final ele retorna uma matriz com uma solução basica, como por exemplo:
+Ao final ele retorna uma matriz com uma solução básica, como, por exemplo:
 
 ````
 1,00    0,00    0,50    0,00    -0,50   1,00
@@ -24,6 +24,8 @@ Ao final ele retorna uma matriz com uma solução basica, como por exemplo:
 0,00    1,00    0,50    0,00    0,50    5,00
 0,00    0,00    2,50    0,00    0,50    17,00
 ````
+
+Ou que a função é ilimitada e não prosseguirá.
 
 
 ### Dependencies
